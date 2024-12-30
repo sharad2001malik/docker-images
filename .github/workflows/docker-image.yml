@@ -10,4 +10,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag docker-in-docker:latest
+      
+  build-test:
+    runs-on: docker.docker-compose
+    steps: 
+    - name: push the Docker image
+      run: |
+           docker tag docker-in-docker:latest docker.io/docker-in-docker:$(date +%d%m%y)
+           docker push docker.io/docker-in-docker:$(date +%d%m%y)
