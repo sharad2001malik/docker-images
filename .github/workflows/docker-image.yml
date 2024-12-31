@@ -17,6 +17,6 @@ jobs:
     steps: 
     - name: push the Docker image
       run: |
-           docker login ${DOCKER_REPO} --username ${DOCKER_REPO_USER} --password $(cat /etc/keypass)
+           docker login ${DOCKER_REPO}
            docker tag docker-in-docker:latest ${DOCKER_REPO}/docker-in-docker:$(date +%d%m%y)
            docker push ${DOCKER_REPO}/docker-in-docker:$(date +%d%m%y)
